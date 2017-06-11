@@ -1,0 +1,138 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Resources"
+                    xmlns:ixconfig="http://schemas.wayne.com/ixconfig"
+                    xmlns:editor="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.EditorViewModels">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Common.Editor.xaml" />
+        <ResourceDictionary Source="Attribute.Editor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate x:Key="WriteXmlTableEditorTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Margin="0 5">
+                <TextBlock Text="Condition"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:BooleanExpressionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Condition, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Boolean Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0 5">
+                <TextBlock Text="Create Option"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:WriteXmlCreateEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Value"
+                          SelectedValue="{Binding Create, ValidatesOnNotifyDataErrors=True}" />
+                <TextBlock Text="WriteXmlCreateOption"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Margin="0 5">
+                <CheckBox IsChecked="{Binding Append}"
+                          Content="Append" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Margin="0 5">
+                <TextBlock Text="Table"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Table, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="Variable Name"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0"
+                        Margin="0 5">
+                <TextBlock Text="File"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:ExpandableEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding File, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Path"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0"
+                        Margin="0 5">
+                <TextBlock Text="XPath"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:ExpandableEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding XPath, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Expandable"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="6"
+                        Grid.Column="0"
+                        Margin="0 5">
+                <TextBlock Text="Child Element"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:ExpandableEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Element, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Expandable"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <Button Grid.Row="7"
+                    Command="{Binding AddAttributeCommand}"
+                    Margin="0 5"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource ToolBarButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="12"
+                               Height="12"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill"
+                                         Visual="{DynamicResource appbar_add}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Text="Add Attribute"
+                               Margin="5 0 0 0" />
+                </StackPanel>
+            </Button>
+
+            <ItemsControl Grid.Row="8"
+                          ItemsSource="{Binding Attributes}"
+                          ItemTemplate="{StaticResource AttributeEditorTemplate}" />
+
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

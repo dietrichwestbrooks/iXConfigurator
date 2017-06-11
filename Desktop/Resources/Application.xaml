@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ixconfig="http://schemas.wayne.com/ixconfig">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Popup.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <ixconfig:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    <ixconfig:NullToBoolValueConverter x:Key="NullToBoolValueConverter" />
+    <ixconfig:NullOrEmptyToBoolValueConverter x:Key="NullOrEmptyToBoolValueConverter" />
+
+    <BitmapImage x:Key="CompanyImageSource"
+                 UriSource="pack://application:,,,/Images/logo.png" />
+
+    <Style x:Key="LinkButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Foreground"
+                Value="Blue" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Margin}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="true">
+                <Setter Property="Foreground"
+                        Value="Red" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FlatButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource AccentColorBrush}" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                            Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding}"
+                            VerticalAlignment="Stretch">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{DynamicResource AccentColorBrush}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource AccentSelectedColorBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MenuButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource FlatButtonStyle}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource GrayBrush5}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ToolBarButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource FlatButtonStyle}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource AccentSelectedColorBrush}" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource AccentColorBrush}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

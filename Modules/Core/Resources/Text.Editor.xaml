@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Resources"
+                    xmlns:ixconfig="http://schemas.wayne.com/ixconfig"
+                    xmlns:editor="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.EditorViewModels">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Common.Editor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate x:Key="TextEditorTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Margin="0 5">
+                <TextBlock Text="Visible"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:BooleanExpressionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Visible, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Boolean Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0 5">
+                <TextBlock Text="Required" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:BooleanExpressionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Required, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Boolean Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Margin="0 5">
+                <TextBlock Text="Enabled"
+                           Style="{StaticResource EditorPropertyLabel}"/>
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:BooleanExpressionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Enabled, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Boolean Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Margin="0 5">
+                <TextBlock Text="Key"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Key, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="Variable Name"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Margin="0 5">
+                <TextBlock Text="Label"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Label, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="String"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="5"
+                        Margin="0 5">
+                <TextBlock Text="Hint"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Hint, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="String"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="6"
+                        Margin="0 5">
+                <TextBlock Text="Value"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Value, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="String"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+                        Margin="0 5">
+                <TextBlock Text="Pattern"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <TextBox Text="{Binding Pattern, ValidatesOnNotifyDataErrors=True}"
+                         Style="{StaticResource EditorPropertyTextBox}" />
+                <TextBlock Text="Regular Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="8"
+                        Margin="0 5">
+                <TextBlock Text="Restriction"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:TextRestrictionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Value"
+                          SelectedValue="{Binding Restriction, ValidatesOnNotifyDataErrors=True}"/>
+                <TextBlock Text="TextRestriction"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

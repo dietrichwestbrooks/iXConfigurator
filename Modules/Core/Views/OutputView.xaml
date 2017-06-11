@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Wayne.Payment.Products.iXConfigurator.Modules.Core.Views.OutputView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Views"
+             xmlns:prism="http://www.codeplex.com/prism"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Border BorderThickness="1"
+                BorderBrush="White"
+                Margin="0 0 5 20">
+            <ScrollViewer Name="OutputScrollViewer"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto">
+                <TextBox Text="{Binding Text, NotifyOnTargetUpdated=True}"
+                         IsReadOnly="True"
+                         TextWrapping="NoWrap"
+                         Background="White"
+                         Foreground="Black"
+                         TargetUpdated="OnOutputChanged">
+                </TextBox>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

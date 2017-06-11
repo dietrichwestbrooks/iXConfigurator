@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Radio.View.xaml" />
+        <ResourceDictionary Source="Check.View.xaml" />
+        <ResourceDictionary Source="Combo.View.xaml" />
+        <ResourceDictionary Source="List.View.xaml" />
+        <ResourceDictionary Source="Text.View.xaml" />
+        <ResourceDictionary Source="Table.View.xaml" />
+        <ResourceDictionary Source="Option.View.xaml" />
+        <ResourceDictionary Source="Product.View.xaml" />
+        <ResourceDictionary Source="Page.View.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>
+    

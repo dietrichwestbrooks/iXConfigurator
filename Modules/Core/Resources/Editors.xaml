@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Resources">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Page.Editor.xaml" />
+        <ResourceDictionary Source="Section.Editor.xaml" />
+        <ResourceDictionary Source="Text.Editor.xaml" />
+        <ResourceDictionary Source="Check.Editor.xaml" />
+        <ResourceDictionary Source="Combo.Editor.xaml" />
+        <ResourceDictionary Source="List.Editor.xaml" />
+        <ResourceDictionary Source="Radio.Editor.xaml" />
+        <ResourceDictionary Source="Table.Editor.xaml" />
+        <ResourceDictionary Source="Set.Editor.xaml" />
+        <ResourceDictionary Source="Unset.Editor.xaml" />
+        <ResourceDictionary Source="Move.Editor.xaml" />
+        <ResourceDictionary Source="Copy.Editor.xaml" />
+        <ResourceDictionary Source="Delete.Editor.xaml" />
+        <ResourceDictionary Source="WriteXml.Editor.xaml" />
+        <ResourceDictionary Source="WriteXmlTable.Editor.xaml" />
+        <ResourceDictionary Source="Download.Editor.xaml" />
+        <ResourceDictionary Source="Zip.Editor.xaml" />
+        <ResourceDictionary Source="Unzip.Editor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <local:EditorTemplateSelector x:Key="EditorTemplateSelector" />
+
+</ResourceDictionary>
+    

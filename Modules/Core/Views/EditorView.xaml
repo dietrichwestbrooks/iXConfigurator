@@ -1,0 +1,215 @@
+﻿<UserControl x:Class="Wayne.Payment.Products.iXConfigurator.Modules.Core.Views.EditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:ixconfig="http://schemas.wayne.com/ixconfig"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Views"
+             d:DesignWidth="300"
+             d:DesignHeight="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/NewConfiguration.Dialog.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static local:EditorView.ValidateCommand}"
+                        Executed="Validate" />
+    </UserControl.CommandBindings>
+    
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding NewConfigurationCommand}"
+                    CommandParameter="{StaticResource NewConfigurationDialog}"
+                    Modifiers="Control"
+                    Key="N" />
+        <KeyBinding Command="{Binding CopyConfigurationCommand}"
+                    CommandParameter="{StaticResource NewConfigurationDialog}"
+                    Modifiers="Control + Shift"
+                    Key="C" />
+        <KeyBinding Command="{Binding SaveCommand}"
+                    Modifiers="Control"
+                    Key="S" />
+        <KeyBinding Command="{x:Static local:EditorView.ValidateCommand}"
+                    Modifiers="Control"
+                    Key="E" />
+        <KeyBinding Command="{Binding FormatCommand}"
+                    Modifiers="Control + Shift"
+                    Key="F" />
+    </UserControl.InputBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+            <RowDefinition x:Name="ErrorsRow" Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Border>
+            <ToolBarTray DockPanel.Dock="Top"
+                         Margin="0,2">
+                <ToolBar>
+                    <Button Command="{Binding NewConfigurationCommand}"
+                            CommandParameter="{StaticResource NewConfigurationDialog}"
+                            Margin="2,0"
+                            ToolTip="New (Ctrl + N)"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Width="12"
+                                       Height="12"
+                                       VerticalAlignment="Center"
+                                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                                                 Visual="{StaticResource appbar_page_xml}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="New"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 5 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding CopyConfigurationCommand}"
+                            CommandParameter="{StaticResource NewConfigurationDialog}"
+                            Margin="2,0"
+                            ToolTip="Copy (Ctrl + Shift + C)"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Width="12"
+                                       Height="12"
+                                       VerticalAlignment="Center"
+                                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                                                 Visual="{StaticResource appbar_page_copy}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="Copy"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 5 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding SaveCommand}"
+                            Margin="2,0"
+                            ToolTip="Save (Ctrl + S)"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Width="12"
+                                       Height="12"
+                                       VerticalAlignment="Center"
+                                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                                                 Visual="{StaticResource appbar_save}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="Save"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 5 0" />
+                        </StackPanel>
+                    </Button>
+                    <Separator />
+                    <Button Command="{x:Static local:EditorView.ValidateCommand}"
+                            Margin="2,0"
+                            ToolTip="Validate (Ctrl + E)"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Width="12"
+                                       Height="12"
+                                       VerticalAlignment="Center"
+                                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                                                 Visual="{StaticResource appbar_check}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="Validate"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 5 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding FormatCommand}"
+                            Margin="2,0"
+                            ToolTip="Format (Ctrl + Shift + F)"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Width="12"
+                                       Height="12"
+                                       VerticalAlignment="Center"
+                                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                                                 Visual="{StaticResource appbar_checkmark_pencil}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="Format"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 5 0" />
+                        </StackPanel>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+        </Border>
+        
+        <Border Grid.Row="1">
+            <avalonedit:TextEditor Name="TextEditor"
+                                   FontFamily="Consolas"
+                                   SyntaxHighlighting="XML"
+                                   ShowLineNumbers="True"
+                                   FontSize="16pt">
+                <avalonedit:TextEditor.Options>
+                    <avalonedit:TextEditorOptions ShowSpaces="True"
+                                                  ShowTabs="True" />
+                </avalonedit:TextEditor.Options>
+                <avalonedit:TextEditor.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Undo" />
+                        <MenuItem Command="Redo" />
+                        <Separator />
+                        <MenuItem Command="Cut" />
+                        <MenuItem Command="Copy" />
+                        <MenuItem Command="Paste" />
+                    </ContextMenu>
+                </avalonedit:TextEditor.ContextMenu>
+                <i:Interaction.Behaviors>
+                    <ixconfig:BindableAvalonEditTextBehavior Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </i:Interaction.Behaviors>
+            </avalonedit:TextEditor>
+        </Border>
+        <GridSplitter Grid.Row="2"
+                      Height="5"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch" />
+        <Border Grid.Row="2"
+                Margin="0 10 0 0">
+            <DataGrid ItemsSource="{Binding ValidationErrors, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                      AutoGenerateColumns="False"
+                      VerticalAlignment="Stretch"
+                      IsReadOnly="True"
+                      x:Name="ErrorsGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Message"
+                                        Binding="{Binding Message}"
+                                        Width="200" />
+                    <DataGridTextColumn Header="Line Number"
+                                        Binding="{Binding MessaLineNumberge}" />
+                    <DataGridTextColumn Header="Position"
+                                        Binding="{Binding LinePosition}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

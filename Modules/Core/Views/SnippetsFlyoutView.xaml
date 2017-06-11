@@ -1,0 +1,118 @@
+﻿<metro:Flyout x:Class="Wayne.Payment.Products.iXConfigurator.Modules.Core.Views.SnippetsFlyoutView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Views"
+              xmlns:editor="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.EditorViewModels"
+              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+              xmlns:ixconfig="http://schemas.wayne.com/ixconfig"
+              xmlns:prism="http://www.codeplex.com/prism"
+              xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+              prism:ViewModelLocator.AutoWireViewModel="True"
+              Theme="Dark"
+              Position="Right"
+              Header="{Binding Title}"
+              mc:Ignorable="d"
+              Width="350"
+              d:DesignHeight="300"
+              d:DesignWidth="300">
+
+    <metro:Flyout.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Editors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </metro:Flyout.Resources>
+
+    <metro:Flyout.InputBindings>
+        <KeyBinding Command="{x:Static ixconfig:ApplicationCommands.CopyClipboardCommand}"
+                    CommandParameter="{Binding CurrentEditor.Snippet}"
+                    Modifiers="Control + Shift"
+                    Key="C" />
+    </metro:Flyout.InputBindings>
+
+    <Grid Margin="10 10 5 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:EditorEnum}}"
+                      DisplayMemberPath="Description"
+                      SelectedValuePath="Value"
+                      SelectedValue="{Binding Editor}" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Margin="0 0 0 20"
+                DataContext="{Binding CurrentEditor}">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding}"
+                                     Value="{x:Null}">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Command="{x:Static ixconfig:ApplicationCommands.CopyClipboardCommand}"
+                        CommandParameter="{Binding Snippet}"
+                        ToolTip="Ctrl + Shift + C"
+                        Margin="0 10"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource ToolBarButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="16"
+                                   Height="16"
+                                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill"
+                                             Visual="{DynamicResource appbar_clipboard_paste}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Copy to Clipboard"
+                                   Margin="5 0 0 0" />
+                    </StackPanel>
+                </Button>
+
+                <TabControl Grid.Row="1">
+                    <TabItem Header="Properties">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      Padding="0 0 5 0">
+                            <ContentControl Content="{Binding}"
+                                            ContentTemplateSelector="{StaticResource EditorTemplateSelector}" />
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Snippet">
+                        <avalonedit:TextEditor IsReadOnly="True"
+                                               SyntaxHighlighting="XML"
+                                               Background="{StaticResource WhiteBrush}"
+                                               HorizontalScrollBarVisibility="Visible"
+                                               VerticalScrollBarVisibility="Visible"
+                                               WordWrap="True"
+                                               Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
+                            <i:Interaction.Behaviors>
+                                <ixconfig:BindableAvalonEditTextBehavior Text="{Binding Snippet, Mode=TwoWay}" />
+                            </i:Interaction.Behaviors>
+                        </avalonedit:TextEditor>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Border>
+    </Grid>
+    
+</metro:Flyout>

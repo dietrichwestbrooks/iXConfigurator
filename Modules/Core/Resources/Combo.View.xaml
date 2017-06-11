@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataTemplate x:Key="ComboViewTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Width="200"
+                       Text="{Binding Label}" />
+
+            <ComboBox Grid.Column="1"
+                      IsEditable="False"
+                      ItemsSource="{Binding View}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="Value"
+                      SelectedValue="{Binding Value}"
+                      Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      IsEnabled="{Binding IsEnabled}">
+            </ComboBox>
+
+        </Grid>
+    </DataTemplate>
+    
+</ResourceDictionary>
+    

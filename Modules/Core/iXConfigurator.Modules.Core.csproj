@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(SolutionDir)\iXConfigurator.Common.props" Condition="Exists('$(SolutionDir)\iXConfigurator.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{850D2382-9ABB-4685-AA99-291CC0149A86}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wayne.Payment.Products.iXConfigurator.Modules.Core</RootNamespace>
+    <AssemblyName>iXConfigurator.Modules.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AvalonEdit.5.0.3\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.4.3.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MahApps.Metro.1.4.3\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Unity.6.3.0\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MahApps.Metro.1.4.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EditorViewModels\AttributeEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\BooleanExpressionEnum.cs" />
+    <Compile Include="EditorViewModels\ChoiceEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\CheckEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\UnzipEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\ZipEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\DownloadEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\EditorViewModelFactory.cs" />
+    <Compile Include="EditorViewModels\ExpandableEnum.cs" />
+    <Compile Include="EditorViewModels\IEditorViewModelFactory.cs" />
+    <Compile Include="EditorViewModels\SectionEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\PageEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\DeleteEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\ListEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\CopyEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\MoveEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\TableEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\RadioEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\ComboEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\EditorEnum.cs" />
+    <Compile Include="EditorViewModels\ControlEditorViewModel.cs" />
+    <Compile Include="Commands\DownloadFileCommand.cs" />
+    <Compile Include="Commands\ITaskCommand.cs" />
+    <Compile Include="Views\BuilderViewModelBase.cs" />
+    <Compile Include="Views\ClauseLogicalOperator.cs" />
+    <Compile Include="Views\ClauseOperator.cs" />
+    <Compile Include="Views\ClauseViewModel.cs" />
+    <Compile Include="Views\DataTableView.xaml.cs">
+      <DependentUpon>DataTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataTableViewModel.cs" />
+    <Compile Include="Views\ExpandableBuilderView.xaml.cs">
+      <DependentUpon>ExpandableBuilderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpandableBuilderViewModel.cs" />
+    <Compile Include="Views\ExpressionBuilderView.xaml.cs">
+      <DependentUpon>ExpressionBuilderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpressionBuilderViewModel.cs" />
+    <Compile Include="Views\IEditorView.cs" />
+    <Compile Include="EditorViewModels\ItemEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\SnippetEditorViewModelBase.cs" />
+    <Compile Include="EditorViewModels\TextEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\TextRestrictionEnum.cs" />
+    <Compile Include="EditorViewModels\UnsetEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\SetEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\TaskEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\WriteXmlCreateEnum.cs" />
+    <Compile Include="EditorViewModels\WriteXmlTableEditorViewModel.cs" />
+    <Compile Include="EditorViewModels\WriteXmlEditorViewModel.cs" />
+    <Compile Include="ElementViewModels\ChoiceViewModel.cs" />
+    <Compile Include="ElementViewModels\ItemViewModel.cs" />
+    <Compile Include="Resources\ControlTemplateSelector.cs" />
+    <Compile Include="Commands\RoutedCommands.cs" />
+    <Compile Include="Resources\EditorTemplateSelector.cs" />
+    <Compile Include="EditorViewModels\ElementEditorViewModel.cs" />
+    <Compile Include="Commands\CopyFilesCommand.cs" />
+    <Compile Include="Commands\ITaskCommandFactory.cs" />
+    <Compile Include="Commands\WriteXmlTableCommand.cs" />
+    <Compile Include="Commands\ZipFilesCommand.cs" />
+    <Compile Include="Commands\UnzipFilesCommand.cs" />
+    <Compile Include="Commands\DeleteFilesCommand.cs" />
+    <Compile Include="Commands\MoveFilesCommand.cs" />
+    <Compile Include="Commands\ReadXmlCommand.cs" />
+    <Compile Include="Commands\TaskCommandFactory.cs" />
+    <Compile Include="Commands\UnsetVariableCommand.cs" />
+    <Compile Include="Commands\WriteXmlCommand.cs" />
+    <Compile Include="Services\ConfiguratorService.cs" />
+    <Compile Include="Commands\SetVariableCommand.cs" />
+    <Compile Include="Commands\TaskCommand.cs" />
+    <Compile Include="ElementViewModels\SummaryOptionViewModel.cs" />
+    <Compile Include="Views\SnippetsFlyoutView.xaml.cs">
+      <DependentUpon>SnippetsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SnippetsFlyoutViewModel.cs" />
+    <Compile Include="WellKnownVariableNames.cs" />
+    <Compile Include="CoreModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ElementViewModels\CheckViewModel.cs" />
+    <Compile Include="Views\ConfiguratorView.xaml.cs">
+      <DependentUpon>ConfiguratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebugFlyoutView.xaml.cs">
+      <DependentUpon>DebugFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DriveViewModel.cs" />
+    <Compile Include="Views\EditorView.xaml.cs">
+      <DependentUpon>EditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditorViewModel.cs" />
+    <Compile Include="ElementViewModels\ElementViewModelFactory.cs" />
+    <Compile Include="ElementViewModels\IElementViewModelFactory.cs" />
+    <Compile Include="Views\OutputView.xaml.cs">
+      <DependentUpon>OutputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputViewModel.cs" />
+    <Compile Include="Resources\PageTemplateSelector.cs" />
+    <Compile Include="ElementViewModels\PageViewModel.cs" />
+    <Compile Include="ElementViewModels\ProductViewModel.cs" />
+    <Compile Include="ElementViewModels\SummaryPageViewModel.cs" />
+    <Compile Include="ElementViewModels\ElementViewModel.cs" />
+    <Compile Include="ElementViewModels\ComboViewModel.cs" />
+    <Compile Include="ElementViewModels\ControlViewModel.cs" />
+    <Compile Include="Views\ConfiguratorViewModel.cs" />
+    <Compile Include="ElementViewModels\ListViewModel.cs" />
+    <Compile Include="ElementViewModels\OptionViewModel.cs" />
+    <Compile Include="ElementViewModels\DefaultPageViewModel.cs" />
+    <Compile Include="ElementViewModels\ConfigurationViewModel.cs" />
+    <Compile Include="ElementViewModels\RadioViewModel.cs" />
+    <Compile Include="ElementViewModels\SectionViewModel.cs" />
+    <Compile Include="ElementViewModels\TableViewModel.cs" />
+    <Compile Include="ElementViewModels\TextViewModel.cs" />
+    <Compile Include="Views\VariablesView.xaml.cs">
+      <DependentUpon>VariablesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariablesViewModel.cs" />
+    <Compile Include="Views\VariableViewModel.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Page Include="Resources\Check.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Choice.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Check.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Unzip.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Zip.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Download.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Delete.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Attribute.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Section.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Page.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\WriteXmlTable.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\WriteXml.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Copy.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Move.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Unset.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Table.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Radio.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\List.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Common.Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Editors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Set.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Text.Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Combo.Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Combo.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Common.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DefaultPage.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Item.Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\List.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\NewConfiguration.Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Option.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Page.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Product.View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Template\iXConfigurator.Template.csproj">
+      <Project>{ce72f8fc-de5a-4fe7-9603-6b9b13fc99ac}</Project>
+      <Name>iXConfigurator.Template</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\iXConfigurator.Infrastructure.csproj">
+      <Project>{08a6a54a-2844-46b6-a392-c66bfaa31c8e}</Project>
+      <Name>iXConfigurator.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\ElementViews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Radio.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\SummaryPage.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Table.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Text.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfiguratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebugFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpandableBuilderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpressionBuilderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SnippetsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VariablesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)Desktop\bin\$(Platform)\$(ConfigurationName)\Modules\
+xcopy /y $(TargetDir)*.dll $(SolutionDir)Desktop\bin\$(Platform)\$(ConfigurationName)\bin\
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <ModuleFile Include="$(TargetPath)" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ModuleFile)" DestinationFolder="$(BinariesDir)$(Platform)\$(Configuration)\Modules" />
+  </Target>
+</Project>

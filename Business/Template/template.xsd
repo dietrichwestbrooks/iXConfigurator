@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.wayne.com/ixconfig" targetNamespace="http://schemas.wayne.com/ixconfig">
+  <xs:simpleType name="variable">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^[a-zA-Z_$][a-zA-Z_$0-9]*$" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="product">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="version" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="pages">
+    <xs:sequence>
+      <xs:element name="page" type="page" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="page">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence>
+          <xs:element name="description" type="xs:string" minOccurs="0" />
+          <xs:choice>
+            <xs:element name="option" type="option" maxOccurs="unbounded" />
+            <xs:element name="section" type="section" maxOccurs="unbounded" />
+          </xs:choice>
+          <xs:element name="summary" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required" />
+        <xs:attribute name="icon" type="path" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="section">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence>
+          <xs:element name="description" type="xs:string" minOccurs="0" />
+          <xs:element name="option" type="option" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required" />
+        <xs:attribute name="icon" type="path" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="option">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:choice maxOccurs="1">
+          <xs:element name="radio" type="radio" />
+          <xs:element name="combo" type="combo" />
+          <xs:element name="list" type="list" />
+          <xs:element name="check" type="check" />
+          <xs:element name="text" type="text" />
+          <xs:element name="table" type="table" />
+        </xs:choice>
+        <xs:attribute name="label" type="xs:string" use="required" />
+        <xs:attribute name="key" type="variable" use="required" />
+        <xs:attribute name="required" type="bindable" use="optional" default="false" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="orientation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="vertical"/>
+      <xs:enumeration value="horizontal"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="element">
+    <xs:attribute name="visible" type="bindable" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="control">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:attribute name="enabled" type="bindable" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="combo">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:sequence>
+          <xs:element name="item" type="item" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="filter" type="expandable" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="list">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:sequence>
+          <xs:element name="item" type="item" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="filter" type="expandable" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="radio">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:sequence>
+          <xs:element name="choice" type="choice" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="orientation" type="orientation" use="optional" default="vertical" />
+        <xs:attribute name="filter" type="expandable" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="check">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:all>
+          <xs:element name="checked" type="checked" minOccurs="0" />
+          <xs:element name="unchecked" type="unchecked" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="default" type="xs:boolean" use="optional" default="false" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="text">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:attribute name="value" type="xs:string" use="optional" />
+        <xs:attribute name="hint" type="xs:string" use="optional" />
+        <xs:attribute name="restriction" type="textRestriction" use="optional" default="none" />
+        <xs:attribute name="pattern" type="regex" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="textRestriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="ipv4"/>
+      <xs:enumeration value="ipv6"/>
+      <xs:enumeration value="port"/>
+      <xs:enumeration value="number"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bindable">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="regex">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="expandable">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="expression">
+    <xs:restriction base="bindable" />
+  </xs:simpleType>
+  <xs:simpleType name="path">
+    <xs:restriction base="expandable" />
+  </xs:simpleType>
+  <xs:simpleType name="url">
+    <xs:restriction base="expandable" />
+  </xs:simpleType>
+  <xs:simpleType name="uri">
+    <xs:restriction base="path" />
+  </xs:simpleType>
+  <xs:complexType name="table">
+    <xs:complexContent mixed="true">
+      <xs:extension base="control">
+        <xs:attribute name="editable" type="xs:boolean" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="choice">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="set" type="set" />
+      <xs:element name="unset" type="unset" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+    <xs:attribute name="filter" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="item">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="unset" type="unset" />
+      <xs:element name="set" type="set" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+    <xs:attribute name="filter" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="checked">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="unset" type="unset" />
+      <xs:element name="set" type="set" />
+      <xs:element name="option" type="option" />
+    </xs:choice>
+    <!--this attribute has to be present to produce the typed c# object -->
+    <xs:attribute name="dummy" type="xs:boolean" use="optional" default="false" />
+  </xs:complexType>
+  <xs:complexType name="unchecked">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="unset" type="unset" />
+      <xs:element name="set" type="set" />
+      <xs:element name="option" type="option" />
+    </xs:choice>
+    <!--this attribute has to be present to produce the typed c# object -->
+    <xs:attribute name="dummy" type="xs:boolean" use="optional" default="false" />
+  </xs:complexType>
+  <xs:complexType name="build">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="set" type="set" />
+      <xs:element name="unset" type="unset" />
+      <xs:element name="copy" type="copy" />
+      <xs:element name="move" type="move" />
+      <xs:element name="delete" type="delete" />
+      <xs:element name="download" type="download" />
+      <xs:element name="zip" type="zip" />
+      <xs:element name="unzip" type="unzip" />
+      <xs:element name="writeXml" type="writeXml" />
+      <xs:element name="writeXmlTable" type="writeXmlTable" />
+      <xs:element name="readXml" type="readXml" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="import">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="set" type="set" />
+      <xs:element name="unset" type="unset" />
+      <xs:element name="copy" type="copy" />
+      <xs:element name="move" type="move" />
+      <xs:element name="delete" type="delete" />
+      <xs:element name="download" type="download" />
+      <xs:element name="zip" type="zip" />
+      <xs:element name="unzip" type="unzip" />
+      <xs:element name="writeXml" type="writeXml" />
+      <xs:element name="writeXmlTable" type="writeXmlTable" />
+      <xs:element name="readXml" type="readXml" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="task">
+    <xs:attribute name="condition" type="expression" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="set">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:attribute name="key" type="variable" use="required" />
+        <xs:attribute name="value" type="expandable" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="unset">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:attribute name="key" type="variable" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="copy">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="from" type="path" />
+          <xs:element name="to" type="path" />
+        </xs:sequence>
+        <xs:attribute name="overwrite" type="xs:boolean" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="download">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="url" type="url" />
+          <xs:element name="file" type="path" />
+        </xs:sequence>
+        <xs:attribute name="overwrite" type="xs:boolean" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="delete">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="path" type="path" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="move">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="from" type="path" />
+          <xs:element name="to" type="path" />
+        </xs:sequence>
+        <xs:attribute name="overwrite" type="xs:boolean" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="zip">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="path" type="path" />
+          <xs:element name="file" type="path" />
+        </xs:sequence>
+        <xs:attribute name="overwrite" type="xs:boolean" use="optional" default="false" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="unzip">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="file" type="path" />
+          <xs:element name="path" type="path" />
+        </xs:sequence>
+        <xs:attribute name="overwrite" type="xs:boolean" use="optional" default="false" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="readXml">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="file" type="path" />
+          <xs:element name="xpath" type="expandable" />
+        </xs:sequence>
+        <xs:attribute name="key" type="variable" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="writeXmlCreateOption">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="file"/>
+      <xs:enumeration value="xpath"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="writeXml">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="file" type="path" />
+          <xs:element name="xpath" type="expandable" />
+          <xs:element name="value" type="expandable" />
+        </xs:sequence>
+        <xs:attribute name="create" type="writeXmlCreateOption" use="optional" default="none" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="writeXmlTable">
+    <xs:complexContent>
+      <xs:extension base="task">
+        <xs:sequence>
+          <xs:element name="file" type="path" />
+          <xs:element name="xpath" type="expandable" />
+          <xs:element name="element" type="expandable" />
+          <xs:element name="attribute" type="expandable" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="create" type="writeXmlCreateOption" use="optional" default="none" />
+        <xs:attribute name="table" type="variable" use="required" />
+        <xs:attribute name="append" type="xs:boolean" use="optional" default="true" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="configurationTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="product" type="product" />
+        <xs:element name="pages" type="pages" />
+        <xs:element name="build" type="build" />
+        <xs:element name="import" type="import" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

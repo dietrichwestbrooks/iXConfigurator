@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.Resources"
+                    xmlns:editor="clr-namespace:Wayne.Payment.Products.iXConfigurator.Modules.Core.EditorViewModels"
+                    xmlns:ixconfig="http://schemas.wayne.com/ixconfig">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Common.Editor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate x:Key="CopyEditorTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Margin="0 5">
+                <TextBlock Text="Condition"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:BooleanExpressionEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding Condition, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Boolean Expression"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0 5">
+                <CheckBox IsChecked="{Binding Overwrite, ValidatesOnNotifyDataErrors=True}"
+                          Content="Overwrite"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Margin="0 5">
+                <TextBlock Text="From"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:ExpandableEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding From, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Path"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0 5">
+                <TextBlock Text="To"
+                           Style="{StaticResource EditorPropertyLabel}" />
+                <ComboBox ItemsSource="{ixconfig:Enumeration {x:Type editor:ExpandableEnum}}"
+                          DisplayMemberPath="Description"
+                          SelectedValuePath="Description"
+                          Text="{Binding To, ValidatesOnNotifyDataErrors=True}"
+                          IsEditable="True"
+                          Style="{StaticResource EditorPropertyComboBox}" />
+                <TextBlock Text="Expandable"
+                           Style="{StaticResource EditorPropertyType}" />
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

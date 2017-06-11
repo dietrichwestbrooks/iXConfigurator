@@ -1,0 +1,102 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataTemplate x:Key="TableViewTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="0 0 0 2"
+                       Text="{Binding Label}" />
+
+            <DataGrid Grid.Row="1"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      AutoGenerateColumns="True"
+                      ColumnWidth="*"
+                      CanUserAddRows="False"
+                      CanUserReorderColumns="False"
+                      CanUserDeleteRows="False"
+                      CanUserSortColumns="True"
+                      ItemsSource="{Binding Items}"
+                      IsReadOnly="{Binding IsEditable, Converter={StaticResource InverseBooleanConverter}}"
+                      SelectedItem="{Binding SelectedRow}"
+                      SelectionMode="Single"
+                      MinWidth="500"
+                      Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      IsEnabled="{Binding IsEnabled}"/>
+            
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0 0 5 2"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button ToolTip="Add"
+                        Cursor="Hand"
+                        Margin="0 0 10 0"
+                        Command="{Binding AddCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button"
+                               BasedOn="{StaticResource FlatButtonStyle}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEditable}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Rectangle Width="16"
+                               Height="16"
+                               VerticalAlignment="Center"
+                               Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill"
+                                         Visual="{StaticResource appbar_add}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+                <Button ToolTip="Remove"
+                        Cursor="Hand"
+                        Command="{Binding RemoveCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button"
+                               BasedOn="{StaticResource FlatButtonStyle}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEditable}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Rectangle Width="16"
+                               Height="16"
+                               VerticalAlignment="Center"
+                               Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill"
+                                         Visual="{StaticResource appbar_list_delete}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>
+    
